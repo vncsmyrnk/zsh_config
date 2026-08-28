@@ -58,8 +58,6 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 zinit snippet OMZL::completion.zsh
 zinit snippet OMZL::history.zsh
 zinit snippet OMZL::key-bindings.zsh
-
-zinit ice wait lucid
 zinit snippet OMZL::directories.zsh
 
 zinit ice wait lucid
