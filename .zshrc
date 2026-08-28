@@ -4,10 +4,14 @@
 ZSH_COMPDUMP="$HOME/.zshcompdump"
 
 HISTFILE="$HOME/.zsh_history"
+unsetopt HIST_SAVE_BY_COPY
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
-unsetopt HIST_SAVE_BY_COPY
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHDMINUS
 
 # Defines environment variables and PATH
 [ -f ~/.zprofile ] && \. ~/.zprofile
@@ -58,7 +62,6 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 zinit snippet OMZL::completion.zsh
 zinit snippet OMZL::history.zsh
 zinit snippet OMZL::key-bindings.zsh
-zinit snippet OMZL::directories.zsh
 
 zinit ice wait lucid
 zinit snippet OMZP::fzf
