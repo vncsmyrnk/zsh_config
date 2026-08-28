@@ -22,6 +22,9 @@ reinstall-plugins:
   rm -rf "$HOME/.local/share/zinit/plugins"
   exec zsh
 
+lint:
+  shfmt -ln zsh -d -i 2 .z*
+
 install: check-deps config
 
 config:
