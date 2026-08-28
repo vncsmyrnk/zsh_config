@@ -25,6 +25,9 @@ reinstall-plugins:
 lint:
   shfmt -ln zsh -d -i 2 .z*
 
+check:
+  find . -type f \( -name "*.zsh" -o -name ".zshrc" -o -name "_*" \) -exec zsh -n {} +
+
 install: check-deps config
 
 config:

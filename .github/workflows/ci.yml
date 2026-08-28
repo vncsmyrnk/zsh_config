@@ -16,13 +16,8 @@ jobs:
       - name: Install dependencies
         run: nix profile add nixpkgs#just nixpkgs#zsh nixpkgs#stow nixpkgs#shfmt
 
-      - name: Syntax check
-        run: |
-          echo "Running syntax check..."
-          find . -type f \( -name "*.zsh" -o -name ".zshrc" -o -name "_*" \) -exec zsh -n {} +
-
-      - name: Lint
-        run: just lint
+      - run: just check
+      - run: just lint
 
       - name: Interactive Runtime Test
         timeout-minutes: 3
