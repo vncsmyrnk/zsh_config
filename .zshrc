@@ -63,6 +63,21 @@ zinit snippet OMZL::completion.zsh
 zinit snippet OMZL::history.zsh
 zinit snippet OMZL::key-bindings.zsh
 
+ZINIT_CUSTOM_SNIPPETS="$HOME/.cache/zinit-custom-snippets"
+zinit-cached-snippet() {
+  if ! command -v "$1" >/dev/null; then
+    return
+  fi
+  local slug=$(tr -cs '[:alnum:]' '-' <<<"$@")
+  local cache_path="$ZINIT_CUSTOM_SNIPPETS/$slug.zsh"
+  if [[ ! -f "$cache_path" ]]; then
+    mkdir -p "$ZINIT_CUSTOM_SNIPPETS"
+    "$@" >"$cache_path"
+  fi
+  zinit snippet "$cache_path"
+}
+zinit-cached-snippet luarocks path --lua-version=5.1
+
 zinit ice wait lucid
 zinit snippet OMZP::fzf
 
@@ -96,7 +111,6 @@ zinit snippet OMZP::kubectl
   \. "$HOME/google-cloud-sdk/completion.zsh.inc"
 [ -x /home/linuxbrew/.linuxbrew/bin/brew ] &&
   \. <(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-command -v luarocks >/dev/null && eval $(luarocks path --lua-version=5.1)
 
 # Sources aliases
 [ -f ~/.zsh_aliases ] && \. ~/.zsh_aliases
